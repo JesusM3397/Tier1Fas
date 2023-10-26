@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 
 # Rutas en FastAPI para devolver HTML
 @app.get('/', response_class=HTMLResponse)
