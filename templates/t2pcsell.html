@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE.edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -23,7 +23,13 @@
 </head>
 
 <body id="page-top">
-
+    <style>
+        /* Estilo para hacer el número más grande */
+        .quantity-box span {
+            font-size: 24px;
+            /* Puedes ajustar el tamaño a tu preferencia */
+        }
+    </style>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -35,7 +41,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-mobile"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Tier 1: Provedor de Equipos</div>
+                <div class="sidebar-brand-text mx-3">Tier 1: Proveedor de Equipos</div>
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
@@ -60,7 +66,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/clientship">
                     <i class="fas fa-fw fa-truck"></i>
-                    <span>Envios</span>
+                    <span>Envíos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -71,7 +77,7 @@
             </li>
 
             <div class="sidebar-heading">
-                Tier 2: Provedor de piezas Electronicas
+                Tier 2: Proveedor de piezas Electrónicas
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/t2perequest">
@@ -82,7 +88,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/t2peship">
                     <i class="fas fa-fw fa-truck"></i>
-                    <span>Envios</span>
+                    <span>Envíos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -98,7 +104,7 @@
                 </a>
             </li>
             <div class="sidebar-heading">
-                Tier 2: Provedor de piezas plasticas cosmeticas
+                Tier 2: Proveedor de piezas plásticas cosméticas
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/t2pcrequest">
@@ -109,7 +115,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/t2pcship">
                     <i class="fas fa-fw fa-truck"></i>
-                    <span>Envios</span>
+                    <span>Envíos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -125,92 +131,140 @@
                 </a>
             </li>
             <div class="sidebar-heading">
-                Logistica
+                Logística
             </div>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/logship">
                     <i class="fas fa-fw fa-truck"></i>
-                    <span>Envios</span>
+                    <span>Envíos</span>
                 </a>
             </li>
-
-
+            <div>
+            </div>
             <hr class="sidebar-divider">
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
-
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Resumen</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-area">
-                                <canvas id="myAreaChart"></canvas>
-                            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <div class="quantity-box text-center">
+                            <h3>Carcasa o Chasis</h3>
+                            <button class="btn btn-primary" id="decreaseChasis">-</button>
+                            <span id="quantityChasis">0</span>
+                            <button class="btn btn-primary" id="increaseChasis">+</button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
+                    <div class="col-6 col-md-3">
+                        <div class="quantity-box text-center">
+                            <h3>Botones</h3>
+                            <button class="btn btn-primary" id="decreaseButtons">-</button>
+                            <span id="quantityButtons">0</span>
+                            <button class="btn btn-primary" id="increaseButtons">+</button>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="quantity-box text-center">
+                            <h3>Funda Trasera</h3>
+                            <button class="btn btn-primary" id="decreaseBackCover">-</button>
+                            <span id="quantityBackCover">0</span>
+                            <button class="btn btn-primary" id="increaseBackCover">+</button>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="quantity-box text-center">
+                            <h3>Revestimientos Internos</h3>
+                            <button class="btn btn-primary" id="decreaseInternalCoatings">-</button>
+                            <span id="quantityInternalCoatings">0</span>
+                            <button class="btn btn-primary" id="increaseInternalCoatings">+</button>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <h4>Resumen de Cantidades</h4>
+                        <p>Total de Carcasa o Chasis: <span id="totalChasis">0</span></p>
+                        <p>Total de Botones: <span id="totalButtons">0</span></p>
+                        <p>Total de Funda Trasera: <span id="totalBackCover">0</span></p>
+                        <p>Total de Revestimientos Internos: <span id="totalInternalCoatings">0</span></p>
+                        <button id="guardarCantidadesButton">Solicitar Piezas Plásticas</button>
                     </div>
 
-
-
-
                 </div>
-
             </div>
-            <div style="text-align: center;">
-                <a class="btn btn-primary btn-user btn-block w-50">
-                    Register Account
-                </a>
-            </div>
+        </div>
+        <script>
+            const plasticParts = [
+                { id: "Chasis", displayId: "quantityChasis", totalDisplayId: "totalChasis" },
+                { id: "Buttons", displayId: "quantityButtons", totalDisplayId: "totalButtons" },
+                { id: "BackCover", displayId: "quantityBackCover", totalDisplayId: "totalBackCover" },
+                { id: "InternalCoatings", displayId: "quantityInternalCoatings", totalDisplayId: "totalInternalCoatings" },
+            ];
+
+            plasticParts.forEach(({ id, displayId, totalDisplayId }) => {
+                const decreaseButton = document.getElementById(`decrease${id}`);
+                const increaseButton = document.getElementById(`increase${id}`);
+                const quantityDisplay = document.getElementById(displayId);
+                let quantity = 0;
+
+                decreaseButton.addEventListener("click", () => {
+                    if (quantity > 0) {
+                        quantity--;
+                        updateQuantityDisplay();
+                        updateTotalDisplay();
+                    }
+                });
+
+                increaseButton.addEventListener("click", () => {
+                    quantity++;
+                    updateQuantityDisplay();
+                    updateTotalDisplay();
+                });
+
+                function updateQuantityDisplay() {
+                    quantityDisplay.textContent = quantity;
+                }
+
+                function updateTotalDisplay() {
+                    const totalDisplay = document.getElementById(totalDisplayId);
+                    totalDisplay.textContent = quantity;
+                }
+            });
+
+            const guardarCantidadesButton = document.getElementById("guardarCantidadesButton");
+            guardarCantidadesButton.addEventListener("click", updatePlasticParts);
+
+            function updatePlasticParts() {
+                const data = {
+                    chasis: parseInt(document.getElementById("quantityChasis").textContent),
+                    buttons: parseInt(document.getElementById("quantityButtons").textContent),
+                    back_cover: parseInt(document.getElementById("quantityBackCover").textContent),
+                    internal_coatings: parseInt(document.getElementById("quantityInternalCoatings").textContent)
+                };
+
+                fetch('/update-plastic-parts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
 
 
+        </script>
+    </div>
 
-
-            <!-- Bootstrap core JavaScript-->
-            <script src="/templates/vendor/jquery/jquery.min.js"></script>
-            <script src="/templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <script src="/templates/vendor/jquery-easing/jquery.easing.min.js"></script>
-            <script src="/templates/js/sb-admin-2.min.js"></script>
-            <script src="/templates/vendor/chart.js/Chart.min.js"></script>
-            <script src="/templates/js/demo/chart-area-demo.js"></script>
-            <script src="/templates/js/demo/chart-pie-demo.js"></script>
-
+    </div>
+    <div style="text-align: center;">
+        <a class="btn btn-primary btn-user btn-block w-50">
+            Register Account
+        </a>
+    </div>
 
 </body>
 
