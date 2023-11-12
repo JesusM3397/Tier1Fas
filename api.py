@@ -99,20 +99,37 @@ def logship():
     return HTMLResponse(content=html_content)
 
 
+##################################################################################################################
+
+
 class UpdateQuantity(BaseModel):
-    screens: int = 0
     cameras: int = 0
-    batteries: int = 0
-    processors: int = 0
+    biometric_sensors: int = 0
+    baseband: int = 0
+    power_management: int = 0
+    processor: int = 0
+    nand: int = 0
+    dram: int = 0
+    accelerometer: int = 0
+    battery: int = 0
+    microphone: int = 0
+    speakers: int = 0
 
 
 @app.post("/update-quantities")
 def update_quantities(request: Request, update_data: UpdateQuantity):
     data = {
-        "screens": update_data.screens,
         "cameras": update_data.cameras,
-        "batteries": update_data.batteries,
-        "processors": update_data.processors,
+        "biometric_sensors": update_data.biometric_sensors,
+        "baseband": update_data.baseband,
+        "power_management": update_data.power_management,
+        "processor": update_data.processor,
+        "nand": update_data.nand,
+        "dram": update_data.dram,
+        "accelerometer": update_data.accelerometer,
+        "battery": update_data.battery,
+        "microphone": update_data.microphone,
+        "speakers": update_data.speakers,
     }
 
     main_api_url = "http://localhost:8001/update-quantities"
@@ -125,20 +142,27 @@ def update_quantities(request: Request, update_data: UpdateQuantity):
         print("Error al enviar datos a main.py")
 
 
-class UpdatePlasticParts(BaseModel):
-    chasis: int = 0
-    buttons: int = 0
-    back_cover: int = 0
-    internal_coatings: int = 0
+##################################################################################################################
 
+class UpdatePlasticParts(BaseModel):
+    carcasa_color_azul: int = 0
+    carcasa_color_verde: int = 0
+    carcasa_color_amarillo: int = 0
+    carcasa_color_morado: int = 0
+    carcasa_color_rosa: int = 0
+    carcasa_color_cyan: int = 0
+    # Agrega más colores según sea necesario
 
 @app.post("/update-plastic-parts")
 def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
     data = {
-        "chasis": update_data.chasis,
-        "buttons": update_data.buttons,
-        "back_cover": update_data.back_cover,
-        "internal_coatings": update_data.internal_coatings,
+        "carcasa_color_azul": update_data.carcasa_color_azul,
+        "carcasa_color_verde": update_data.carcasa_color_verde,
+        "carcasa_color_amarillo": update_data.carcasa_color_amarillo,
+        "carcasa_color_morado": update_data.carcasa_color_morado,
+        "carcasa_color_rosa": update_data.carcasa_color_rosa,
+        "carcasa_color_cyan": update_data.carcasa_color_cyan,
+        # Agrega más colores según sea necesario
     }
 
     main_api_url = "http://localhost:8002/update-plastic-parts"
@@ -149,6 +173,7 @@ def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
         return {"message": "Datos enviados con éxito a main.py en el puerto 8002"}
     else:
         return {"error": "Error al enviar datos a main.py en el puerto 8002"}
+
 
 
 if __name__ == "__main__":

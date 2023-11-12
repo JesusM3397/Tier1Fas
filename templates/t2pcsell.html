@@ -148,54 +148,78 @@
                 <div class="row">
                     <div class="col-6 col-md-3">
                         <div class="quantity-box text-center">
-                            <h3>Carcasa o Chasis</h3>
-                            <button class="btn btn-primary" id="decreaseChasis">-</button>
-                            <span id="quantityChasis">0</span>
-                            <button class="btn btn-primary" id="increaseChasis">+</button>
+                            <h3>Carcasa color Azul</h3>
+                            <button class="btn btn-primary" id="decreaseCarcasaColorAzul">-</button>
+                            <span id="quantityCarcasaColorAzul">0</span>
+                            <button class="btn btn-primary" id="increaseCarcasaColorAzul">+</button>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="quantity-box text-center">
-                            <h3>Botones</h3>
-                            <button class="btn btn-primary" id="decreaseButtons">-</button>
-                            <span id="quantityButtons">0</span>
-                            <button class="btn btn-primary" id="increaseButtons">+</button>
+                            <h3>Carcasa color Verde</h3>
+                            <button class="btn btn-primary" id="decreaseCarcasaColorVerde">-</button>
+                            <span id="quantityCarcasaColorVerde">0</span>
+                            <button class="btn btn-primary" id="increaseCarcasaColorVerde">+</button>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="quantity-box text-center">
-                            <h3>Funda Trasera</h3>
-                            <button class="btn btn-primary" id="decreaseBackCover">-</button>
-                            <span id="quantityBackCover">0</span>
-                            <button class="btn btn-primary" id="increaseBackCover">+</button>
+                            <h3>Carcasa color Amarillo</h3>
+                            <button class="btn btn-primary" id="decreaseCarcasaColorAmarillo">-</button>
+                            <span id="quantityCarcasaColorAmarillo">0</span>
+                            <button class="btn btn-primary" id="increaseCarcasaColorAmarillo">+</button>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
                         <div class="quantity-box text-center">
-                            <h3>Revestimientos Internos</h3>
-                            <button class="btn btn-primary" id="decreaseInternalCoatings">-</button>
-                            <span id="quantityInternalCoatings">0</span>
-                            <button class="btn btn-primary" id="increaseInternalCoatings">+</button>
+                            <h3>Carcasa color Morado</h3>
+                            <button class="btn btn-primary" id="decreaseCarcasaColorMorado">-</button>
+                            <span id="quantityCarcasaColorMorado">0</span>
+                            <button class="btn btn-primary" id="increaseCarcasaColorMorado">+</button>
                         </div>
                     </div>
+                    <div class="col-6 col-md-3">
+                        <div class="quantity-box text-center">
+                            <h3>Carcasa color Rosa</h3>
+                            <button class="btn btn-primary" id="decreaseCarcasaColorRosa">-</button>
+                            <span id="quantityCarcasaColorRosa">0</span>
+                            <button class="btn btn-primary" id="increaseCarcasaColorRosa">+</button>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="quantity-box text-center">
+                            <h3>Carcasa color Cyan</h3>
+                            <button class="btn btn-primary" id="decreaseCarcasaColorCyan">-</button>
+                            <span id="quantityCarcasaColorCyan">0</span>
+                            <button class="btn btn-primary" id="increaseCarcasaColorCyan">+</button>
+                        </div>
+                    </div>
+                    <!-- Agrega más colores según sea necesario -->
                     <div class="text-center mt-4">
                         <h4>Resumen de Cantidades</h4>
-                        <p>Total de Carcasa o Chasis: <span id="totalChasis">0</span></p>
-                        <p>Total de Botones: <span id="totalButtons">0</span></p>
-                        <p>Total de Funda Trasera: <span id="totalBackCover">0</span></p>
-                        <p>Total de Revestimientos Internos: <span id="totalInternalCoatings">0</span></p>
+                        <p>Total de Carcasa color Azul: <span id="totalCarcasaColorAzul">0</span></p>
+                        <p>Total de Carcasa color Verde: <span id="totalCarcasaColorVerde">0</span></p>
+                        <p>Total de Carcasa color Amarillo: <span id="totalCarcasaColorAmarillo">0</span></p>
+                        <p>Total de Carcasa color Morado: <span id="totalCarcasaColorMorado">0</span></p>
+                        <p>Total de Carcasa color Rosa: <span id="totalCarcasaColorRosa">0</span></p>
+                        <p>Total de Carcasa color Cyan: <span id="totalCarcasaColorCyan">0</span></p>
+                        <!-- Agrega más líneas según sea necesario -->
                         <button id="guardarCantidadesButton">Solicitar Piezas Plásticas</button>
                     </div>
-
                 </div>
             </div>
         </div>
+
+
         <script>
             const plasticParts = [
-                { id: "Chasis", displayId: "quantityChasis", totalDisplayId: "totalChasis" },
-                { id: "Buttons", displayId: "quantityButtons", totalDisplayId: "totalButtons" },
-                { id: "BackCover", displayId: "quantityBackCover", totalDisplayId: "totalBackCover" },
-                { id: "InternalCoatings", displayId: "quantityInternalCoatings", totalDisplayId: "totalInternalCoatings" },
+                { id: "CarcasaColorAzul", displayId: "quantityCarcasaColorAzul", totalDisplayId: "totalCarcasaColorAzul" },
+                { id: "CarcasaColorVerde", displayId: "quantityCarcasaColorVerde", totalDisplayId: "totalCarcasaColorVerde" },
+                { id: "CarcasaColorAmarillo", displayId: "quantityCarcasaColorAmarillo", totalDisplayId: "totalCarcasaColorAmarillo" },
+                { id: "CarcasaColorMorado", displayId: "quantityCarcasaColorMorado", totalDisplayId: "totalCarcasaColorMorado" },
+                { id: "CarcasaColorRosa", displayId: "quantityCarcasaColorRosa", totalDisplayId: "totalCarcasaColorRosa" },
+                { id: "CarcasaColorCyan", displayId: "quantityCarcasaColorCyan", totalDisplayId: "totalCarcasaColorCyan" },
+                // Agrega más colores según sea necesario
             ];
 
             plasticParts.forEach(({ id, displayId, totalDisplayId }) => {
@@ -233,10 +257,13 @@
 
             function updatePlasticParts() {
                 const data = {
-                    chasis: parseInt(document.getElementById("quantityChasis").textContent),
-                    buttons: parseInt(document.getElementById("quantityButtons").textContent),
-                    back_cover: parseInt(document.getElementById("quantityBackCover").textContent),
-                    internal_coatings: parseInt(document.getElementById("quantityInternalCoatings").textContent)
+                    carcasa_color_azul: parseInt(document.getElementById("quantityCarcasaColorAzul").textContent),
+                    carcasa_color_verde: parseInt(document.getElementById("quantityCarcasaColorVerde").textContent),
+                    carcasa_color_amarillo: parseInt(document.getElementById("quantityCarcasaColorAmarillo").textContent),
+                    carcasa_color_morado: parseInt(document.getElementById("quantityCarcasaColorMorado").textContent),
+                    carcasa_color_rosa: parseInt(document.getElementById("quantityCarcasaColorRosa").textContent),
+                    carcasa_color_cyan: parseInt(document.getElementById("quantityCarcasaColorCyan").textContent),
+                    // Agrega más colores según sea necesario
                 };
 
                 fetch('/update-plastic-parts', {
@@ -254,8 +281,6 @@
                         console.error('Error:', error);
                     });
             }
-
-
         </script>
     </div>
 
