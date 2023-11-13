@@ -33,6 +33,7 @@ def update_quantities(request: Request, update_data: UpdateQuantity):
     
     return {"mensaje": "Cantidades actualizadas correctamente"}
 
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8001)

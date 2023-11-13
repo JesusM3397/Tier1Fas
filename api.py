@@ -1,12 +1,43 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+from sqlalchemy import create_engine, Column, Integer, String, MetaData, Table
+from sqlalchemy.orm import declarative_base, Session
+
+
 import requests
 
 app = FastAPI()
 app.mount("/templates", StaticFiles(directory="templates"), name="templates")
+templates = Jinja2Templates(directory="templates")
 
+DATABASE_URL = "mysql+mysqlconnector://root:@localhost/tier1"
+engine = create_engine(DATABASE_URL)
+metadata = MetaData()
+
+raw_materials = Table(
+    "raw_materials",
+    metadata,
+    Column("id", Integer, primary_key=True, index=True),
+    Column("name", String, index=True),
+    Column("description", String, index=True),
+    Column("props", String, index=True),
+    Column("stock", Integer, index=True),
+    Column("enabled", Integer, index=True),
+)
+
+Base = declarative_base()
+class Material(Base):
+    __tablename__ = "raw_materials"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    description = Column(String, index=True)
+    props = Column(String, index=True)
+    stock = Column(Integer, index=True)
+    enabled = Column(Integer, index=True)
+    
 
 @app.get("/", response_class=HTMLResponse)
 def index():
@@ -57,11 +88,23 @@ def t2pesell():
     return HTMLResponse(content=html_content)
 
 
-@app.get("/t2pewarehouse", response_class=HTMLResponse)
-def t2pewarehouse():
-    with open("templates/t2pewarehouse.html", "r") as file:
+
+Base.metadata.create_all(bind=engine)
+
+@app.get("/warehouse", response_class=HTMLResponse)
+def t2pewarehouse(request: Request):
+    with open("templates/warehouse.html", "r") as file:
         html_content = file.read()
-    return HTMLResponse(content=html_content)
+
+    # Realizar la consulta a la base de datos
+    db = Session(engine)
+    datos = db.query(Material).all()
+    db.close()
+
+    return templates.TemplateResponse(
+        "warehouse.html",
+        {"request": request, "datos": datos}
+    )
 
 
 @app.get("/t2pcrequest", response_class=HTMLResponse)
@@ -81,13 +124,6 @@ def t2pcship():
 @app.get("/t2pcsell", response_class=HTMLResponse)
 def t2pcsell():
     with open("templates/t2pcsell.html", "r") as file:
-        html_content = file.read()
-    return HTMLResponse(content=html_content)
-
-
-@app.get("/t2pcwarehouse", response_class=HTMLResponse)
-def t2pcwarehouse():
-    with open("templates/t2pcwarehouse.html", "r") as file:
         html_content = file.read()
     return HTMLResponse(content=html_content)
 
