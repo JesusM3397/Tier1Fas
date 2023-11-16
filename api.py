@@ -29,6 +29,8 @@ raw_materials = Table(
 )
 
 Base = declarative_base()
+
+
 class Material(Base):
     __tablename__ = "raw_materials"
     id = Column(Integer, primary_key=True, index=True)
@@ -37,7 +39,7 @@ class Material(Base):
     props = Column(String, index=True)
     stock = Column(Integer, index=True)
     enabled = Column(Integer, index=True)
-    
+
 
 @app.get("/", response_class=HTMLResponse)
 def index():
@@ -88,8 +90,8 @@ def t2pesell():
     return HTMLResponse(content=html_content)
 
 
-
 Base.metadata.create_all(bind=engine)
+
 
 @app.get("/warehouse", response_class=HTMLResponse)
 def t2pewarehouse(request: Request):
@@ -102,8 +104,7 @@ def t2pewarehouse(request: Request):
     db.close()
 
     return templates.TemplateResponse(
-        "warehouse.html",
-        {"request": request, "datos": datos}
+        "warehouse.html", {"request": request, "datos": datos}
     )
 
 
@@ -180,6 +181,7 @@ def update_quantities(request: Request, update_data: UpdateQuantity):
 
 ##################################################################################################################
 
+
 class UpdatePlasticParts(BaseModel):
     carcasa_color_azul: int = 0
     carcasa_color_verde: int = 0
@@ -188,6 +190,7 @@ class UpdatePlasticParts(BaseModel):
     carcasa_color_rosa: int = 0
     carcasa_color_cyan: int = 0
     # Agrega más colores según sea necesario
+
 
 @app.post("/update-plastic-parts")
 def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
@@ -209,7 +212,6 @@ def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
         return {"message": "Datos enviados con éxito a main.py en el puerto 8002"}
     else:
         return {"error": "Error al enviar datos a main.py en el puerto 8002"}
-
 
 
 if __name__ == "__main__":
