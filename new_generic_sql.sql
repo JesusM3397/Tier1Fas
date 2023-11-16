@@ -1,4 +1,3 @@
--- Crear la tabla
 CREATE TABLE solicitudes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     carcasa_color_azul INT,
@@ -8,7 +7,6 @@ CREATE TABLE solicitudes (
     carcasa_color_rosa INT,
     carcasa_color_cyan INT
 );
--- Creación de la tabla partners
 CREATE TABLE partners (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -19,13 +17,11 @@ CREATE TABLE partners (
     enabled BOOLEAN
 );
 
--- Datos de prueba para la tabla partners
 INSERT INTO partners (name, details, direction, api_endpoint, props, enabled)
 VALUES
     ('T2A PE', 'Tier 2 Proveedor de Piezas Electronicas', 'Direction 1 T2A', 'http://api.example.com/partner1', '{"key": "value1"}', 1),
     ('T2B PC', 'Tier 2 Proveedor de Piezas Cosmeticas', 'Direction T2B', 'http://api.example.com/partner2', '{"key": "value3"}', 1);
 
--- Creación de la tabla raw_materials
 CREATE TABLE raw_materials (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -35,7 +31,6 @@ CREATE TABLE raw_materials (
     enabled BOOLEAN
 );
 
--- Datos de prueba para la tabla raw_materials
 INSERT INTO raw_materials (name, description, props, stock, enabled)
 VALUES
     ('Cameras', 'Cameras for iPhone', '{"key": "value1"}', 100, 1),
@@ -56,7 +51,6 @@ VALUES
     ('Carcasa Rosa', 'Carcasa color Rosa', '{"key": "value3"}', 150, 1),
     ('Carcasa Cyan', 'Carcasa color Cyan', '{"key": "value3"}', 150, 1);
 
--- Creación de la tabla products
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -66,7 +60,7 @@ CREATE TABLE products (
     enabled BOOLEAN
 );
 
--- Datos de prueba para la tabla products
+
 INSERT INTO products (name, description, props, stock, enabled)
 VALUES
     ('iPhone Azul', 'Smartphone iPhone color Azul', '{"key": "value1"}', 50, 1),
@@ -76,7 +70,7 @@ VALUES
     ('iPhone Rosa', 'Smartphone iPhone color Rosa', '{"key": "value1"}', 50, 1),
     ('iPhone Cyan', 'Smartphone iPhone color Cyan', '{"key": "value1"}', 55, 1);
 
--- Creación de la tabla raw_materials_partners (relación muchos a muchos entre raw_materials y partners)
+
 CREATE TABLE raw_materials_partners (
     id INT AUTO_INCREMENT PRIMARY KEY,
     raw_material_id INT,
@@ -87,7 +81,7 @@ CREATE TABLE raw_materials_partners (
     FOREIGN KEY (partner_id) REFERENCES partners(id)
 );
 
--- Datos de prueba para la tabla raw_materials_partners
+
 INSERT INTO raw_materials_partners (raw_material_id, partner_id, props, enabled)
 VALUES
     (1, 1, '{"key": "value1"}', 1),
@@ -108,7 +102,7 @@ VALUES
     (16, 2, '{"key": "value2"}', 1),
     (17, 2, '{"key": "value3"}', 1);
 
--- Creación de la tabla bom (Bill of Materials)
+
 CREATE TABLE bom (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -120,7 +114,7 @@ CREATE TABLE bom (
     FOREIGN KEY (raw_material_id) REFERENCES raw_materials(id)
 );
 
--- Datos de prueba para la tabla bom
+
 INSERT INTO bom (product_id, raw_material_id, quantity, props, enabled)
 VALUES
     (1, 1, 3, '{"key": "value1"}', 1),
@@ -137,8 +131,7 @@ VALUES
     (1, 12, 1, '{"key": "value2"}', 1);
 
 
--- **************   SALES   **************--
--- Creación de la tabla sales
+
 CREATE TABLE sales (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,
@@ -147,14 +140,14 @@ CREATE TABLE sales (
     enabled BOOLEAN
 );
 
--- Datos de prueba para la tabla sales
+
 INSERT INTO sales (date, total, props, enabled)
 VALUES
     ('2023-01-15', 500.00, '{"key": "value1"}', 1),
     ('2023-02-20', 750.50, '{"key": "value2"}', 1),
     ('2023-03-25', 300.25, '{"key": "value3"}', 1);
 
--- Creación de la tabla products_sales (relación muchos a muchos entre products y sales)
+
 CREATE TABLE products_sales (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -167,7 +160,7 @@ CREATE TABLE products_sales (
     FOREIGN KEY (sale_id) REFERENCES sales(id)
 );
 
--- Datos de prueba para la tabla products_sales
+
 INSERT INTO products_sales (product_id, sale_id, quantity, subtotal, props, enabled)
 VALUES
     (1, 1, 2, 100.00, '{"key": "value1"}', 1),
