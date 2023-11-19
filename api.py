@@ -6,17 +6,19 @@ from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, MetaData, Table
 from sqlalchemy.orm import declarative_base, Session
 
-
-import requests
+import requests 
 
 app = FastAPI()
 app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 templates = Jinja2Templates(directory="templates")
 
+
+#Conector a la base de datos 
 DATABASE_URL = "mysql+mysqlconnector://root:@localhost/tier1"
 engine = create_engine(DATABASE_URL)
 metadata = MetaData()
 
+#Obtener tabla de materiales 
 raw_materials = Table(
     "raw_materials",
     metadata,
@@ -28,9 +30,22 @@ raw_materials = Table(
     Column("enabled", Integer, index=True),
 )
 
+#Clase para sacar los datos de "Solicitudes"
+solicitudes = Table(
+    "solicitudes",
+    metadata,
+    Column("id", Integer, primary_key=True, index=True),
+    Column("carcasa_color_azul", Integer, index=True),
+    Column("carcasa_color_verde", Integer, index=True),
+    Column("carcasa_color_amarillo", Integer, index=True),
+    Column("carcasa_color_morado", Integer, index=True),
+    Column("carcasa_color_rosa", Integer, index=True),
+    Column("carcasa_color_cyan", Integer, index=True),
+)
+
 Base = declarative_base()
 
-
+#Clase para sacar los datos de "Raw materials"
 class Material(Base):
     __tablename__ = "raw_materials"
     id = Column(Integer, primary_key=True, index=True)
@@ -39,7 +54,20 @@ class Material(Base):
     props = Column(String, index=True)
     stock = Column(Integer, index=True)
     enabled = Column(Integer, index=True)
-
+    
+    
+#Clase para sacar los datos de "Solicitudes"
+class Solicitud(Base):
+    __tablename__ = "solicitudes"
+    id = Column(Integer, primary_key=True, index=True)
+    carcasa_color_azul = Column(Integer, index=True)
+    carcasa_color_verde = Column(Integer, index=True)
+    carcasa_color_amarillo = Column(Integer, index=True)
+    carcasa_color_morado = Column(Integer, index=True)
+    carcasa_color_rosa = Column(Integer, index=True)
+    carcasa_color_cyan = Column(Integer, index=True)
+    
+Base.metadata.create_all(bind=engine)
 
 @app.get("/", response_class=HTMLResponse)
 def index():
@@ -49,11 +77,16 @@ def index():
 
 
 @app.get("/clientrequest", response_class=HTMLResponse)
-def clientrequest():
+def clientrequest(request: Request):
     with open("templates/clientrequest.html", "r") as file:
         html_content = file.read()
-    return HTMLResponse(content=html_content)
-
+    # Realizar la consulta a la base de datos
+    db = Session(engine)
+    datos = db.query(Solicitud).all()
+    db.close()
+    return templates.TemplateResponse(
+        "clientrequest.html", {"request": request, "datos": datos}
+    )
 
 @app.get("/clientship", response_class=HTMLResponse)
 def clientship():
@@ -65,13 +98,6 @@ def clientship():
 @app.get("/clientsell", response_class=HTMLResponse)
 def clientsell():
     with open("templates/clientsell.html", "r") as file:
-        html_content = file.read()
-    return HTMLResponse(content=html_content)
-
-
-@app.get("/t2perequest", response_class=HTMLResponse)
-def t2perequest():
-    with open("templates/t2perequest.html", "r") as file:
         html_content = file.read()
     return HTMLResponse(content=html_content)
 
@@ -90,8 +116,6 @@ def t2pesell():
     return HTMLResponse(content=html_content)
 
 
-Base.metadata.create_all(bind=engine)
-
 
 @app.get("/warehouse", response_class=HTMLResponse)
 def t2pewarehouse(request: Request):
@@ -106,13 +130,6 @@ def t2pewarehouse(request: Request):
     return templates.TemplateResponse(
         "warehouse.html", {"request": request, "datos": datos}
     )
-
-
-@app.get("/t2pcrequest", response_class=HTMLResponse)
-def t2pcrequest():
-    with open("templates/t2pcrequest.html", "r") as file:
-        html_content = file.read()
-    return HTMLResponse(content=html_content)
 
 
 @app.get("/t2pcship", response_class=HTMLResponse)
