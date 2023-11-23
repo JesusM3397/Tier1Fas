@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String, MetaData, Table
 from sqlalchemy.orm import declarative_base, Session
-
+from sqlalchemy.orm import sessionmaker
 
 import requests
 
@@ -13,7 +13,9 @@ app = FastAPI()
 app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 templates = Jinja2Templates(directory="templates")
 
-DATABASE_URL = "mysql+mysqlconnector://root:@localhost/tier1"
+DATABASE_URL = "mysql+mysqlconnector://admin:Top1cosD3des4rroll0dEZist3mas@tier1-proveedor.c3nzo7i0knuz.us-east-1.rds.amazonaws.com:3306/tier1"
+#DATABASE_URL = "mysql+mysqlconnector://root:@localhost/tier1"
+
 engine = create_engine(DATABASE_URL)
 metadata = MetaData()
 
@@ -212,6 +214,8 @@ def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
         return {"message": "Datos enviados con éxito a main.py en el puerto 8002"}
     else:
         return {"error": "Error al enviar datos a main.py en el puerto 8002"}
+
+
 
 
 if __name__ == "__main__":

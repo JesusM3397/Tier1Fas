@@ -34,7 +34,6 @@ class UpdatePlasticParts(BaseModel):
 def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     db = SessionLocal()
-
     try:
         plastic_part = PlasticPart(
             carcasa_color_azul=update_data.carcasa_color_azul,
@@ -44,11 +43,9 @@ def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
             carcasa_color_rosa=update_data.carcasa_color_rosa,
             carcasa_color_cyan=update_data.carcasa_color_cyan,
         )
-
         db.add(plastic_part)
         db.commit()
         db.refresh(plastic_part)
-
         print('Datos recibidos desde api.py (Piezas Plásticas):')
         print(f"Carcasa Color Ázul: {update_data.carcasa_color_azul}")
         print(f"Carcasa Color Verde: {update_data.carcasa_color_verde}")
@@ -56,11 +53,10 @@ def update_plastic_parts(request: Request, update_data: UpdatePlasticParts):
         print(f"Carcasa Color Morado: {update_data.carcasa_color_morado}")
         print(f"Carcasa Color Rosa: {update_data.carcasa_color_rosa}")
         print(f"Carcasa Color Cyan: {update_data.carcasa_color_cyan}")
-
         return {"mensaje": "Cantidades de piezas plásticas actualizadas correctamente"}
     finally:
         db.close()
-
+        
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8002)

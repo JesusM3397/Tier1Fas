@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
-
+import time
 app = FastAPI()
 
 class UpdateQuantity(BaseModel):
@@ -18,6 +18,7 @@ class UpdateQuantity(BaseModel):
 
 @app.post("/update-quantities")
 def update_quantities(request: Request, update_data: UpdateQuantity):
+    time.sleep(5)
     print('Datos recibidos desde api.py:')
     print(f"Cameras: {update_data.cameras}")
     print(f"Biometric Sensors: {update_data.biometric_sensors}")
