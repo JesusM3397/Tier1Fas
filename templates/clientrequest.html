@@ -80,12 +80,6 @@
                 Tier 2: Provedor de piezas Electronicas
             </div>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/t2perequest">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Solicitudes</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link collapsed" href="/t2peship">
                     <i class="fas fa-fw fa-truck"></i>
                     <span>Envios</span>
@@ -100,12 +94,6 @@
             <div class="sidebar-heading">
                 Tier 2: Provedor de piezas plasticas cosmeticas
             </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/t2pcrequest">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Solicitudes</span>
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/t2pcship">
                     <i class="fas fa-fw fa-truck"></i>
@@ -143,27 +131,38 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                    <th>Acciones</th>
+                                    <th>ID</th>
+                                    <th>Azul</th>
+                                    <th>Verde</th>
+                                    <th>Amarillo</th>
+                                    <th>Morado</th>
+                                    <th>Rosa</th>
+                                    <th>Cyan</th>
+                                    <th>  </th>
+                                    <th>  </th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                    <td>
-                                        <a class="btn btn-success">Aceptar</a>
-                                        <a class="btn btn-danger">Rechazar</a>
-                                    </td>
+                                    {% for solicitudes in datos %}
+                                        <tr>
+                                            <td>{{ solicitudes.id }}</td>
+                                            <td>{{ solicitudes.carcasa_color_azul }}</td>
+                                            <td>{{ solicitudes.carcasa_color_verde}}</td>
+                                            <td>{{ solicitudes.carcasa_color_amarillo }}</td>
+                                            <td>{{ solicitudes.carcasa_color_morado }}</td>
+                                            <td>{{ solicitudes.carcasa_color_rosa }}</td>
+                                            <td>{{ solicitudes.carcasa_color_cyan }}</td>
+                                            <td>
+                                                <a class="btn btn-success">Aceptar</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger">Rechazar</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    
                                 </tr>
                             </tbody>
                         </table>
